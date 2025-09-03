@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>دیجی‌شاپ | فروشگاه کالاهای دیجیتال</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <button id="themeToggle" class="icon-btn" aria-label="تغییر تم" title="تغییر تم">
+        🌓
+      </button>
+      <h1 class="logo">دیجی‌شاپ</h1>
+      <div class="header-actions">
+        <button id="cartBtn" class="btn primary" aria-haspopup="dialog" aria-controls="cartDrawer">
+          سبد خرید <span id="cartCount" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="toolbar" aria-label="نوار ابزار محصولات">
+      <div class="search-wrap">
+        <input id="searchInput" type="search" placeholder="جستجوی محصول..." aria-label="جستجو در محصولات" />
+      </div>
+
+      <div class="filters">
+        <label class="field">
+          <span>دسته‌بندی</span>
+          <select id="categoryFilter" aria-label="فیلتر دسته‌بندی">
+            <option value="all">همه</option>
+          </select>
+        </label>
+
+        <label class="field price-field">
+          <span>محدوده قیمت (تومان)</span>
+          <div class="price-range">
+            <input id="priceMin" type="number" min="0" step="100000" value="0" aria-label="حداقل قیمت" />
+            <span class="sep">–</span>
+            <input id="priceMax" type="number" min="0" step="100000" value="0" aria-label="حداکثر قیمت" />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>مرتب‌سازی</span>
+          <select id="sortSelect" aria-label="مرتب‌سازی">
+            <option value="default">پیش‌فرض</option>
+            <option value="price-asc">قیمت (صعودی)</option>
+            <option value="price-desc">قیمت (نزولی)</option>
+            <option value="rating-desc">امتیاز (بیشترین)</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="productsGrid" class="grid" aria-live="polite" aria-busy="false">
+      <!-- کارت‌های محصول به‌صورت داینامیک تزریق می‌شوند -->
+    </section>
+  </main>
+
+  <!-- دیالوگ جزئیات محصول -->
+  <dialog id="productModal" class="modal" aria-label="جزئیات محصول">
+    <form method="dialog" class="modal-box">
+      <button class="icon-btn close" value="close" aria-label="بستن">✖</button>
+      <div id="modalContent"><!-- محتوا توسط JS --></div>
+    </form>
+  </dialog>
+
+  <!-- سبد خرید (درِاور) -->
+  <aside id="cartDrawer" class="drawer" aria-hidden="true" aria-label="سبد خرید" role="dialog" aria-modal="true">
+    <div class="drawer-header">
+      <h2>سبد خرید</h2>
+      <button id="closeCart" class="icon-btn" aria-label="بستن">✖</button>
+    </div>
+    <div id="cartItems" class="cart-items"><!-- آیتم‌ها --></div>
+
+    <div class="cart-summary">
+      <div class="row">
+        <span>جمع جزء</span><strong id="subtotal">۰</strong>
+      </div>
+      <div class="row">
+        <span>مالیات (۹٪)</span><strong id="tax">۰</strong>
+      </div>
+      <div class="row discount-row hidden" id="discountRow">
+        <span>تخفیف</span><strong id="discount">۰</strong>
+      </div>
+      <div class="row total">
+        <span>مبلغ قابل پرداخت</span><strong id="total">۰</strong>
+      </div>
+
+      <div class="coupon">
+        <input id="couponInput" type="text" placeholder="کد تخفیف (مثال: DIGI10)" aria-label="کد تخفیف" />
+        <button id="applyCoupon" class="btn">اعمال</button>
+      </div>
+      <p class="muted">* پرداخت واقعی انجام نمی‌شود. این یک پروژه‌ی فرانت‌اند نمونه است.</p>
+    </div>
+  </aside>
+
+  <div id="overlay" class="overlay" hidden></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>ساخته‌شده با ❤️ — فقط فرانت‌اند | ذخیره‌سازی محلی (localStorage)</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
